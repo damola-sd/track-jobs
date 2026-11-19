@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Log application</title>
+  <link rel="stylesheet" href="../lib/base.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <h1 id="heading">Log application</h1>
+    <button id="openDashboard" type="button">Dashboard ↗</button>
+  </header>
+
+  <div id="dupBanner" class="banner" hidden></div>
+  <p id="hint" class="muted" hidden>Couldn't read job details from this page. Fill them in below.</p>
+
+  <form id="appForm" class="form-grid">
+    <div class="row">
+      <label>Company<input name="company" required autocomplete="off"></label>
+      <label>Job title<input name="title" required autocomplete="off"></label>
+    </div>
+    <div class="row">
+      <label>Location<input name="location" autocomplete="off"></label>
+      <label>Work mode<select name="workMode"></select></label>
+    </div>
+    <div class="row">
+      <label>Salary<input name="salary" autocomplete="off"></label>
+      <label>Source<input name="source" autocomplete="off"></label>
+    </div>
+    <div class="row">
+      <label>Applied<input type="datetime-local" name="appliedAt" required></label>
+      <label>Status<select name="status"></select></label>
+    </div>
+    <div class="row">
+      <label>Résumé version<input name="resumeVersion" placeholder="e.g. backend-v3" autocomplete="off"></label>
+      <label>Follow up on<input type="date" name="followUpAt"></label>
+    </div>
+    <label>Contact / referral<input name="contact" autocomplete="off"></label>
+    <label>Notes<textarea name="notes" rows="2"></textarea></label>
+    <label>URL<input name="url" type="url" required></label>
+    <label class="check" id="descRow"><input type="checkbox" id="saveDescription" checked> Save a copy of the job description</label>
+    <button type="submit" class="primary" id="submitBtn">Save application</button>
+  </form>
+
+  <div id="saved" class="saved" hidden>
+    <div class="tick">✓</div>
+    <p><strong id="savedTitle"></strong></p>
+    <p class="muted" id="savedSub"></p>
+    <button type="button" id="savedDashboard">Open dashboard</button>
+  </div>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

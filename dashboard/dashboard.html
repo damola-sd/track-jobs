@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Job Applications</title>
+  <link rel="stylesheet" href="../lib/base.css">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <main>
+    <header class="top">
+      <div>
+        <h1>Job applications</h1>
+        <p class="muted" id="subtitle"></p>
+      </div>
+      <div class="actions">
+        <button id="addBtn" type="button" class="primary">+ Add manually</button>
+        <button id="exportCsv" type="button">Export CSV</button>
+        <button id="exportJson" type="button">Export JSON</button>
+        <label class="button" for="importFile">Import JSON</label>
+        <input type="file" id="importFile" accept="application/json,.json" hidden>
+      </div>
+    </header>
+
+    <section class="stats" id="stats"></section>
+
+    <section class="toolbar">
+      <input type="search" id="search" placeholder="Search company, role, location, notes…">
+      <select id="statusFilter" aria-label="Filter by status"></select>
+      <select id="sortBy" aria-label="Sort">
+        <option value="newest">Newest first</option>
+        <option value="oldest">Oldest first</option>
+        <option value="company">Company A–Z</option>
+        <option value="status">Status</option>
+      </select>
+    </section>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Applied</th>
+            <th>Company</th>
+            <th>Role</th>
+            <th>Location</th>
+            <th>Source</th>
+            <th>Status</th>
+            <th>Follow-up</th>
+            <th><span class="sr-only">Actions</span></th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <p id="empty" class="empty muted" hidden></p>
+    </div>
+  </main>
+
+  <dialog id="editDialog">
+    <form id="editForm" class="form-grid">
+      <h2 id="dialogTitle">Edit application</h2>
+      <div class="row">
+        <label>Company<input name="company" required></label>
+        <label>Job title<input name="title" required></label>
+      </div>
+      <div class="row">
+        <label>Location<input name="location"></label>
+        <label>Work mode<select name="workMode"></select></label>
+      </div>
+      <div class="row">
+        <label>Salary<input name="salary"></label>
+        <label>Source<input name="source"></label>
+      </div>
+      <div class="row">
+        <label>Applied<input type="datetime-local" name="appliedAt" required></label>
+        <label>Status<select name="status"></select></label>
+      </div>
+      <div class="row">
+        <label>Résumé version<input name="resumeVersion"></label>
+        <label>Follow up on<input type="date" name="followUpAt"></label>
+      </div>
+      <label>Contact / referral<input name="contact"></label>
+      <label>URL<input name="url" type="url"></label>
+      <label>Notes<textarea name="notes" rows="3"></textarea></label>
+      <details>
+        <summary>Job description</summary>
+        <textarea name="description" rows="10"></textarea>
+      </details>
+      <div id="history" class="history"></div>
+      <footer>
+        <button type="button" id="deleteBtn" class="danger">Delete</button>
+        <span class="spacer"></span>
+        <button type="button" id="cancelBtn">Cancel</button>
+        <button type="submit" class="primary">Save</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <script type="module" src="dashboard.js"></script>
+</body>
+</html>
